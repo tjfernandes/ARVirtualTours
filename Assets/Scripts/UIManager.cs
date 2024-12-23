@@ -4,7 +4,6 @@ using Inworld;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Microsoft.MixedReality.Toolkit.Experimental.UI;
 using System;
 using UnityEngine.EventSystems;
 
@@ -16,24 +15,22 @@ public class UIManager : MonoBehaviour
 
     #region UI elements
         public GameObject UICanvas;
-        public GameObject map;
-        public GameObject guider;
-        public GameObject bubbleChatPanel;
         public GameObject bubbleRight;
         public AudioClip buttonClickAudio;
 
-        private GameObject chat;
         private Button askButton;
+        private GameObject bubbleChatPanel;
+        private TMP_InputField chatInputField;
         private Button speakButton;
         private Sprite speakButtonSprite;
         private GameObject quizPanel;
         private Button quizButton;
         private Button stopQuizButton;
         private GameObject finalScore;
-        private Button mapButton;
         private GameObject confirmation;
         private Button yesButton;
         private Button noButton;
+
 
     #endregion
 
@@ -50,13 +47,12 @@ public class UIManager : MonoBehaviour
 
         // UI elements
         speakButton = UICanvas.transform.Find("SpeakButton").GetComponent<Button>();
-        chat = UICanvas.transform.Find("Chat").gameObject;
         quizPanel = UICanvas.transform.Find("QuizPanel").gameObject;
-        mapButton = UICanvas.transform.Find("MapButton").GetComponent<Button>();
 
-        askButton = chat.transform.Find("AskButton").GetComponent<Button>();
-        quizButton = chat.transform.Find("QuizButton").GetComponent<Button>();
-        stopQuizButton = chat.transform.Find("StopQuizButton").GetComponent<Button>();
+        askButton = UICanvas.transform.Find("AskButton").GetComponent<Button>();
+        chatInputField = UICanvas.transform.Find("Chat").GetComponent<TMP_InputField>();
+        quizButton = UICanvas.transform.Find("QuizButton").GetComponent<Button>();
+        stopQuizButton = UICanvas.transform.Find("StopQuizButton").GetComponent<Button>();
 
         finalScore = quizPanel.transform.Find("FinalScore").gameObject;
         confirmation = quizPanel.transform.Find("ConfirmationQuit").gameObject;
@@ -64,14 +60,11 @@ public class UIManager : MonoBehaviour
         yesButton = confirmation.transform.Find("YesButton").GetComponent<Button>();
         noButton = confirmation.transform.Find("NoButton").GetComponent<Button>();
 
-        AddButtonClickAudio(new List<GameObject> { askButton.gameObject, quizButton.gameObject, stopQuizButton.gameObject, mapButton.gameObject, yesButton.gameObject, noButton.gameObject });
+        AddButtonClickAudio(new List<GameObject> { askButton.gameObject, quizButton.gameObject, stopQuizButton.gameObject, yesButton.gameObject, noButton.gameObject });
 
-        AddHoverEffect(new List<GameObject> { askButton.gameObject, speakButton.gameObject, quizButton.gameObject, stopQuizButton.gameObject, mapButton.gameObject, yesButton.gameObject, noButton.gameObject });
+        askButton.onClick.AddListener(() => chatInputField.Select());
+        chatInputField.onSubmit.AddListener(HandleTextSubmitted);
 
-
-        Debug.Log("Adding event listeners");
-
-        askButton.onClick.AddListener(OnAskButtonClicked);
 
         // Quiz event management
         if (this.GetComponent<QuizController>().Questions.Count > 0)
@@ -86,8 +79,6 @@ public class UIManager : MonoBehaviour
         
 
         speakButton.onClick.AddListener(OnSpeakButtonClicked);
-
-        mapButton.onClick.AddListener(ShowHideMap);
 
         // Confirmation event management 
         yesButton.onClick.AddListener(OnYesButtonClicked);
@@ -107,28 +98,6 @@ public class UIManager : MonoBehaviour
             button.onClick.AddListener(() => audioSource.Play());
         }
     }
-
-    private void AddHoverEffect(List<GameObject> uiElements = null)
-    {
-        foreach (GameObject uiElement in uiElements)
-        {
-            Debug.Log("Adding hover effect to " + uiElement.name);
-            UIHoverManager hoverManager = uiElement.AddComponent<UIHoverManager>();
-            EventTrigger eventTrigger = uiElement.AddComponent<EventTrigger>();
-
-            // Add PointerEnter event
-            EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-            entry.callback.AddListener((eventData) => hoverManager.OnPointerEnter((PointerEventData)eventData));
-            eventTrigger.triggers.Add(entry);
-
-            // Add PointerExit event
-            entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-            entry.callback.AddListener((eventData) => hoverManager.OnPointerExit((PointerEventData)eventData));
-            eventTrigger.triggers.Add(entry);
-            
-
-        }
-    }
     
     void Start()
     {
@@ -136,50 +105,42 @@ public class UIManager : MonoBehaviour
         speakButtonSprite = speakButtonImage.sprite;
     }
 
-    
-
     #region UI Event Listeners
 
-        private void OnAskButtonClicked()
-        {
-            Debug.Log("Ask button clicked");    
-            NonNativeKeyboard.Instance.PresentKeyboard();
-            NonNativeKeyboard.Instance.OnTextSubmitted += HandleTextSubmitted;
-        }
-
-        private void HandleTextSubmitted(object sender, EventArgs e)
-        {
-            NonNativeKeyboard.Instance.OnTextSubmitted -= HandleTextSubmitted; // Unsubscribe to avoid multiple subscriptions
-            OnTextSubmitted(NonNativeKeyboard.Instance.InputField.text);
-        }
-
-        private void OnTextSubmitted(string text)
+        private void HandleTextSubmitted(string text)
         {
             Debug.Log("Text submitted: " + text);   
             if (!string.IsNullOrEmpty(text))
             {
-                    Debug.Log("Inworld Instance: " + InworldController.Instance);
                 if (InworldController.Instance != null)
                 {
                     if (text.StartsWith("*"))
                         InworldController.Instance.SendNarrativeAction(text.Remove(0, 1));
                     else
                     {
-                        // Instantiate the chat bubble
+                        // Get the bubble chat panel from character children
+                        GameObject guide = GameObject.FindWithTag("guide");
+                        Debug.Log("Guide: " + guide);
+
+                        bubbleChatPanel = guide.transform.Find("Canvas/ChatScreen/Anchor/Scroll Rect/Panel").gameObject;
+
+                        Debug.Log("Bubble chat panel: " + bubbleChatPanel);
+
                         GameObject bubble = Instantiate(bubbleRight, bubbleChatPanel.transform);
                         
                         bubble.transform.Find("TxtName").GetComponent<TextMeshProUGUI>().text = "You";
                         bubble.transform.Find("TxtData").GetComponent<TextMeshProUGUI>().text = text;
 
+                        // Send the text to the inworld controller
                         InworldController.Instance.SendText(text);
                     }
                 }
                 else
                 {
-                    Debug.LogError("InworldController.Instance is null");
+                    Debug.LogError("InworldController.Instance sis null");
                 }
-                NonNativeKeyboard.Instance.InputField.text = "";
-            }        
+                //chatInputField.text = ""; // Clear the keyboard text
+            }    
         }
 
         private void OnSpeakButtonClicked()
@@ -230,19 +191,6 @@ public class UIManager : MonoBehaviour
             finalScore.SetActive(false);
 
             InworldController.CurrentCharacter.SendTrigger("forfeit_declined", true);
-        }
-
-        private void ShowHideMap()
-        {
-            if (map.activeSelf)
-            {
-                map.SetActive(false);
-            }
-            else
-            {
-                InworldController.CurrentCharacter.SendTrigger("show_map", true);
-                map.SetActive(true);
-            }
         }
 
         public void DeactivateChatComponents()

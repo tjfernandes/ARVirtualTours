@@ -1,8 +1,9 @@
 {
   "dependencies": {
-    "com.inworld.unity.core": "file:/Users/tjfernandes/Documents/Tese/Dev/VRVirtualTours/Assets/Inworld/com.inworld.unity.core-3.4.2.tgz",
+    "com.inworld.unity.core": "file:/Users/tjfernandes/Documents/Tese/Dev/ARVirtualTours/Assets/Inworld/com.inworld.unity.core-3.4.2.tgz",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.5.2",
+    "com.unity.feature.ar": "1.0.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.render-pipelines.universal": "14.0.11",
     "com.unity.textmeshpro": "3.0.7",
@@ -10,9 +11,7 @@
     "com.unity.toolchain.macos-arm64-linux-x86_64": "2.0.4",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
-    "com.unity.xr.interaction.toolkit": "2.6.3",
-    "com.unity.xr.management": "4.5.0",
-    "com.unity.xr.meta-openxr": "1.0.2",
+    "com.unity.xr.arkit": "5.1.5",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

@@ -19,31 +19,25 @@ using Inworld.Sample.RPM;
 */
 public class MainController : MonoBehaviour
 {
+    public static MainController Instance { get; private set; }
     public GameObject audioCapture;
     private StateManager stateManager;
     private UIManager uiManager;
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         stateManager = GetComponent<StateManager>();
         uiManager = GetComponent<UIManager>();
-    }
-    
-
-    void Start()
-    {
-        StartCoroutine(GreetPlayer());
-    }
-
-    private IEnumerator GreetPlayer()
-    {
-        Debug.Log("Greeting Player");
-        while(InworldController.CurrentCharacter == null)
-        {
-            yield return null;
-        }
-        Debug.Log("Character Found");
-        InworldController.CurrentCharacter.SendTrigger("greeting", false);
     }
 
     #region Inworld Custom Event Listeners

@@ -8,12 +8,12 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 3
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: VirtualTours
-  productName: VRVirtualTours
+  productName: ARVirtualTours
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -141,7 +141,13 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: 9ea6ba4a5708c4b10b2983fc1616dfe9, type: 2}
+  - {fileID: 7878382956458724354, guid: 56c46f365219741a49c2ea2c98f9d87c, type: 2}
+  - {fileID: 11400000, guid: 6b44ed1329be54ff2be418614fa3ef0d, type: 2}
+  - {fileID: 4800000, guid: e7c77f6eaab324a819efdc13b8125a39, type: 3}
+  - {fileID: 4800000, guid: 6743a50a812740be8c0aa3fccc46fae9, type: 3}
+  - {fileID: 5093220215511688085, guid: ee1a10601873b4476a7a18aeec7831cc, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -164,6 +170,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.VirtualTours.VRVirtualTours
     Standalone: com.VirtualTours.VRVirtualTours
+    iPhone: com.VirtualTours.ARVirtualTours
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -245,7 +252,7 @@ PlayerSettings:
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
   VisionOSManualSigningProvisioningProfileType: 0
-  appleEnableAutomaticSigning: 0
+  appleEnableAutomaticSigning: 1
   iOSRequireARKit: 0
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
@@ -588,7 +595,7 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
-  cameraUsageDescription: 
+  cameraUsageDescription: VirtualTours wants to use your camera
   locationUsageDescription: 
   microphoneUsageDescription: VirtualTours wants to use your mic
   bluetoothUsageDescription: 
@@ -843,6 +850,7 @@ PlayerSettings:
     Android: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;INWORLD_DEBUG
     Standalone: INWORLD_DEBUG;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
     Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
+    iPhone: UNITY_XR_ARKIT_LOADER_ENABLED;INWORLD_DEBUG
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

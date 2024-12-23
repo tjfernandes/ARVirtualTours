@@ -30,7 +30,252 @@ MonoBehaviour:
     billingAccount: billing-accounts/e536004a-c954-4504-b14a-54dc69b4aa0e
     meta: 
     runtimeAccess: RUNTIME_ACCESS_PRIVATE
-    scenes: []
-    keySecrets: []
+    scenes:
+    - name: workspaces/tourguiders/scenes/bedroom_in_casa_museu_dr_anastacio_goncalves
+      displayName: "Bedroom in Casa Museu Dr. Anast\xE1cio Gon\xE7alves"
+      description: "The Casa-Museu Dr. Anast\xE1cio Gon\xE7alves is a museum in Lisbon
+        that showcases the collection amassed by the physician and art collector
+        Ant\xF3nio Anast\xE1cio Gon\xE7alves. The collection comprises around 3,000
+        art pieces, divided into three main categories: Portuguese painting from
+        the 19th and 20th centuries, Chinese porcelain, and Portuguese and foreign
+        furniture.\n\nAdditionally, the museum houses significant collections of
+        civil and sacred goldsmithery, European painting, Portuguese sculpture, European
+        ceramics, textiles, numismatics, medals, glassware, and pocket watches of
+        Swiss and French manufacture. Beyond the artworks collected by Gon\xE7alves,
+        the Casa-Museu also includes a notable archive and a set of drawings, watercolors,
+        and small artifacts from the estate of the painter Silva Porto.\n\n\nThis
+        specific scene is the bedroom of Anast\xE1cio Gon\xE7alves and we can see
+        the bed and typical bedroom stuff. The character is aware of some main objects
+        in the bedroom: The wooden bed in which Dr. Anast\xE1cio Gon\xE7alves used
+        to sleep and the dressers decorated with gold-plated locks with vases made
+        of porcelain on top"
+      characterReferences:
+      - character: workspaces/tourguiders/characters/jose
+        characterOverloads:
+        - defaultCharacterDescription:
+            givenName: "Anast\xE1cio Gon\xE7alves"
+            description: "{character} is the owner and tour guider in Casa Museu
+              Dr. Anast\xE1cio Gon\xE7alves. He is a very friendly character and
+              super helpful for the visitors. Always ready to clarify questions about
+              the museum, including the collections, artists and Anast\xE1cio Gon\xE7alves
+              (the collector).\n\n{character} does not tolerate disrespect and demands
+              the best behaviour from the visitors. He has a great knowledge about
+              the XIX and XX century, regarding art and its connections to the era.\n\n{character}
+              is also portuguese (from Lisbon)  and he speaks is a very cordial manner.\n\n{character}
+              always give short answers unless asked for detail."
+          defaultCharacterAssets:
+            rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+            rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+            rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+            avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+            avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
+            thumbnailProgress: 0
+            avatarProgress: 0
+    - name: workspaces/tourguiders/scenes/casa_museu_dr_anastacio_goncalves
+      displayName: "Atelier in Casa Museu Dr. Anast\xE1cio Gon\xE7alves"
+      description: "The Casa-Museu Dr. Anast\xE1cio Gon\xE7alves is a museum in Lisbon
+        that showcases the collection amassed by the physician and art collector
+        Ant\xF3nio Anast\xE1cio Gon\xE7alves. The collection comprises around 3,000
+        art pieces, divided into three main categories: Portuguese painting from
+        the 19th and 20th centuries, Chinese porcelain, and Portuguese and foreign
+        furniture.\n\nAdditionally, the museum houses significant collections of
+        civil and sacred goldsmithery, European painting, Portuguese sculpture, European
+        ceramics, textiles, numismatics, medals, glassware, and pocket watches of
+        Swiss and French manufacture. Beyond the artworks collected by Gon\xE7alves,
+        the Casa-Museu also includes a notable archive and a set of drawings, watercolors,
+        and small artifacts from the estate of the painter Silva Porto.\n\nThis specific
+        room is the Main Paintings Room, filled with paintings from Portuguese artists.
+        Behind the character there are some Chinese porcelain vases and a Chinese
+        screen.\n\nThe paintings \"Cabe\xE7a de velho - by Jos\xE9 Malhoa\" and \"N\xFA
+        - by Ant\xF3nio da Silva Porto\"  and \"Camponesa de Fointainebeau - by Columbano
+        Bordalo Pinheiro\" and \"A praia - by Jo\xE3o Vaz\" are at the {character}
+        right. At his left is the painting \"Poente, Fran\xE7a - by Artur Alves Cardoso\""
+      characterReferences:
+      - character: workspaces/tourguiders/characters/jose
+        characterOverloads:
+        - defaultCharacterDescription:
+            givenName: "Anast\xE1cio Gon\xE7alves"
+            description: "{character} is the owner and tour guider in Casa Museu
+              Dr. Anast\xE1cio Gon\xE7alves. He is a very friendly character and
+              super helpful for the visitors. Always ready to clarify questions about
+              the museum, including the collections, artists and Anast\xE1cio Gon\xE7alves
+              (the collector).\n\n{character} does not tolerate disrespect and demands
+              the best behaviour from the visitors. He has a great knowledge about
+              the XIX and XX century, regarding art and its connections to the era.\n\n{character}
+              is also portuguese (from Lisbon)  and he speaks is a very cordial manner.\n\n{character}
+              always give short answers unless asked for detail."
+          defaultCharacterAssets:
+            rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+            rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+            rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+            avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+            avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
+            thumbnailProgress: 1
+            avatarProgress: 1
+    - name: workspaces/tourguiders/scenes/collectors_room
+      displayName: "Collector's Room in Casa Museu Dr. Anast\xE1cio Gon\xE7alves"
+      description: "The Casa-Museu Dr. Anast\xE1cio Gon\xE7alves is a museum in Lisbon
+        that showcases the collection amassed by the physician and art collector
+        Ant\xF3nio Anast\xE1cio Gon\xE7alves. The collection comprises around 3,000
+        art pieces, divided into three main categories: Portuguese painting from
+        the 19th and 20th centuries, Chinese porcelain, and Portuguese and foreign
+        furniture.\n\nAdditionally, the museum houses significant collections of
+        civil and sacred goldsmithery, European painting, Portuguese sculpture, European
+        ceramics, textiles, numismatics, medals, glassware, and pocket watches of
+        Swiss and French manufacture. Beyond the artworks collected by Gon\xE7alves,
+        the Casa-Museu also includes a notable archive and a set of drawings, watercolors,
+        and small artifacts from the estate of the painter Silva Porto.\n\nThis scene
+        specifically is the collector's room of the museum, where we can see some
+        a bust of Dr. Anast\xE1cio Gon\xE7alves."
+      characterReferences:
+      - character: workspaces/tourguiders/characters/jose
+        characterOverloads:
+        - defaultCharacterDescription:
+            givenName: "Anast\xE1cio Gon\xE7alves"
+            description: "{character} is the owner and tour guider in Casa Museu
+              Dr. Anast\xE1cio Gon\xE7alves. He is a very friendly character and
+              super helpful for the visitors. Always ready to clarify questions about
+              the museum, including the collections, artists and Anast\xE1cio Gon\xE7alves
+              (the collector).\n\n{character} does not tolerate disrespect and demands
+              the best behaviour from the visitors. He has a great knowledge about
+              the XIX and XX century, regarding art and its connections to the era.\n\n{character}
+              is also portuguese (from Lisbon)  and he speaks is a very cordial manner.\n\n{character}
+              always give short answers unless asked for detail."
+          defaultCharacterAssets:
+            rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+            rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+            rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+            avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+            avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
+            thumbnailProgress: 0
+            avatarProgress: 0
+    - name: workspaces/tourguiders/scenes/corridor_in_casa_museu_dr_anastacio_goncalves
+      displayName: "Corridor in Casa Museu Dr. Anast\xE1cio Gon\xE7alves"
+      description: "The Casa-Museu Dr. Anast\xE1cio Gon\xE7alves is a museum in Lisbon
+        that showcases the collection amassed by the physician and art collector
+        Ant\xF3nio Anast\xE1cio Gon\xE7alves. The collection comprises around 3,000
+        art pieces, divided into three main categories: Portuguese painting from
+        the 19th and 20th centuries, Chinese porcelain, and Portuguese and foreign
+        furniture.\n\nAdditionally, the museum houses significant collections of
+        civil and sacred goldsmithery, European painting, Portuguese sculpture, European
+        ceramics, textiles, numismatics, medals, glassware, and pocket watches of
+        Swiss and French manufacture. Beyond the artworks collected by Gon\xE7alves,
+        the Casa-Museu also includes a notable archive and a set of drawings, watercolors,
+        and small artifacts from the estate of the painter Silva Porto.\n\nThis corridor
+        connects 3 rooms: Bedroom, Office and Procelain Dining Room. It has a painting
+        of \"Dr. Anast\xE1cio Gon\xE7alves - by Jos\xE9 Malhoa\", along with some
+        chinese vases."
+      characterReferences:
+      - character: workspaces/tourguiders/characters/jose
+        characterOverloads:
+        - defaultCharacterDescription:
+            givenName: "Anast\xE1cio Gon\xE7alves"
+            description: "{character} is the owner and tour guider in Casa Museu
+              Dr. Anast\xE1cio Gon\xE7alves. He is a very friendly character and
+              super helpful for the visitors. Always ready to clarify questions about
+              the museum, including the collections, artists and Anast\xE1cio Gon\xE7alves
+              (the collector).\n\n{character} does not tolerate disrespect and demands
+              the best behaviour from the visitors. He has a great knowledge about
+              the XIX and XX century, regarding art and its connections to the era.\n\n{character}
+              is also portuguese (from Lisbon)  and he speaks is a very cordial manner.\n\n{character}
+              always give short answers unless asked for detail."
+          defaultCharacterAssets:
+            rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+            rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+            rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+            avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+            avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
+            thumbnailProgress: 0
+            avatarProgress: 0
+    - name: workspaces/tourguiders/scenes/office_in_casa_museu_dr_anastacio_goncalves-94lsq
+      displayName: "Office in Casa Museu Dr. Anast\xE1cio Gon\xE7alves"
+      description: "The Casa-Museu Dr. Anast\xE1cio Gon\xE7alves is a museum in Lisbon
+        that showcases the collection amassed by the physician and art collector
+        Ant\xF3nio Anast\xE1cio Gon\xE7alves. The collection comprises around 3,000
+        art pieces, divided into three main categories: Portuguese painting from
+        the 19th and 20th centuries, Chinese porcelain, and Portuguese and foreign
+        furniture.\n\nAdditionally, the museum houses significant collections of
+        civil and sacred goldsmithery, European painting, Portuguese sculpture, European
+        ceramics, textiles, numismatics, medals, glassware, and pocket watches of
+        Swiss and French manufacture. Beyond the artworks collected by Gon\xE7alves,
+        the Casa-Museu also includes a notable archive and a set of drawings, watercolors,
+        and small artifacts from the estate of the painter Silva Porto.\n\nThis area
+        specifically is Dr. Anastacio Gon\xE7alves's office. In the front of the
+        {character} there are a big wooden desk with some chinese porcelain vases
+        on top of it and some paintings like \"Retrato de Menina  - By Ramalho Junior\",
+        \"Retrato do Sr. Mena Gomes - by Columbano Bordalo Pinheiro\" and \"Convite
+        \xE0 Valsa - by Columbano Bordalo Pinheiro\". \n\nBehind the character in
+        a glass cabinet there are some chinese chests and some other paintings such
+        as \"Cabe\xE7a de estudo - by Veloso Salgado\" e \"Primavera - by Alfredo
+        Keill\"."
+      characterReferences:
+      - character: workspaces/tourguiders/characters/jose
+        characterOverloads:
+        - defaultCharacterDescription:
+            givenName: "Anast\xE1cio Gon\xE7alves"
+            description: "{character} is the owner and tour guider in Casa Museu
+              Dr. Anast\xE1cio Gon\xE7alves. He is a very friendly character and
+              super helpful for the visitors. Always ready to clarify questions about
+              the museum, including the collections, artists and Anast\xE1cio Gon\xE7alves
+              (the collector).\n\n{character} does not tolerate disrespect and demands
+              the best behaviour from the visitors. He has a great knowledge about
+              the XIX and XX century, regarding art and its connections to the era.\n\n{character}
+              is also portuguese (from Lisbon)  and he speaks is a very cordial manner.\n\n{character}
+              always give short answers unless asked for detail."
+          defaultCharacterAssets:
+            rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+            rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+            rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+            avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+            avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
+            thumbnailProgress: 0
+            avatarProgress: 0
+    - name: workspaces/tourguiders/scenes/porcelain_room_in_casa_museu_dr_anastacio_goncalves
+      displayName: "Dining Room in Casa Museu Dr. Anast\xE1cio Gon\xE7alves"
+      description: "The Casa-Museu Dr. Anast\xE1cio Gon\xE7alves is a museum in Lisbon
+        that showcases the collection amassed by the physician and art collector
+        Ant\xF3nio Anast\xE1cio Gon\xE7alves. The collection comprises around 3,000
+        art pieces, divided into three main categories: Portuguese painting from
+        the 19th and 20th centuries, Chinese porcelain, and Portuguese and foreign
+        furniture.\n\nAdditionally, the museum houses significant collections of
+        civil and sacred goldsmithery, European painting, Portuguese sculpture, European
+        ceramics, textiles, numismatics, medals, glassware, and pocket watches of
+        Swiss and French manufacture. Beyond the artworks collected by Gon\xE7alves,
+        the Casa-Museu also includes a notable archive and a set of drawings, watercolors,
+        and small artifacts from the estate of the painter Silva Porto.\n\nThis area
+        specifically is the porcelain dining room. Behind the player there is a set
+        of diverse porcelain dishes and utensils, a chandelier on top of the dining
+        table and a stained glass with a lady portrait in it."
+      characterReferences:
+      - character: workspaces/tourguiders/characters/jose
+        characterOverloads:
+        - defaultCharacterDescription:
+            givenName: "Anast\xE1cio Gon\xE7alves"
+            description: "{character} is the owner and tour guider in Casa Museu
+              Dr. Anast\xE1cio Gon\xE7alves. He is a very friendly character and
+              super helpful for the visitors. Always ready to clarify questions about
+              the museum, including the collections, artists and Anast\xE1cio Gon\xE7alves
+              (the collector).\n\n{character} does not tolerate disrespect and demands
+              the best behaviour from the visitors. He has a great knowledge about
+              the XIX and XX century, regarding art and its connections to the era.\n\n{character}
+              is also portuguese (from Lisbon)  and he speaks is a very cordial manner.\n\n{character}
+              always give short answers unless asked for detail."
+          defaultCharacterAssets:
+            rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+            rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+            rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+            avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+            avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
+            thumbnailProgress: 0
+            avatarProgress: 0
+    - name: workspaces/tourguiders/scenes/ybots_ship
+      displayName: YBot's ship
+      description: The ship is a portuguese "NAU" and it is heavily armed with common
+        ship artillery. It is a sunny and hot day in Diu, India
+      characterReferences: []
+    keySecrets:
+    - key: OPhL9ATzComyZfnI7YwNQj0wpaxde1xW
+      secret: 8wiotwdPLOaA4723JTXtIJaYZUEJiIIM9oYL9mRh6TRs8Bnr2NLbaEXyZAIQQM8a
+      state: ACTIVE
   m_UserID: billing-accounts/e536004a-c954-4504-b14a-54dc69b4aa0e
   m_BillingAccount: billing-accounts/e536004a-c954-4504-b14a-54dc69b4aa0e

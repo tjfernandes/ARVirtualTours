@@ -18,13 +18,13 @@ MonoBehaviour:
   characters:
   - agentId: 
     brainName: workspaces/tourguiders/characters/jose
-    givenName: Manuel
+    givenName: "Anast\xE1cio Gon\xE7alves"
     characterAssets:
-      rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/15bb6108-f1ac-4c0f-a88c-54c6f6b3fbf9.glb
-      rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/15bb6108-f1ac-4c0f-a88c-54c6f6b3fbf9_portrait.jpg
-      rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/15bb6108-f1ac-4c0f-a88c-54c6f6b3fbf9_posture.jpg
-      avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/eabef6de-71c4-41e4-9dd2-b8162544c0c0.jpg
-      avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/eabef6de-71c4-41e4-9dd2-b8162544c0c0-original.jpg
+      rpmModelUri: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_model/24672c86-5ae8-4939-b628-334408062283.glb
+      rpmImageUriPortrait: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_portrait.jpg
+      rpmImageUriPosture: https://storage.googleapis.com/inworld-ai-usercontent-prod/rpm_image/24672c86-5ae8-4939-b628-334408062283_posture.jpg
+      avatarImg: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7.jpg
+      avatarImgOriginal: https://storage.googleapis.com/inworld-ai-usercontent-prod/2d_image/7a780cf5-20fd-4c6f-b12b-cfea4e0f1ca7-original.jpg
       thumbnailProgress: 0
       avatarProgress: 0
     thumbnail: {fileID: 0}
