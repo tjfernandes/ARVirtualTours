@@ -7,6 +7,7 @@ using UnityEngine.XR.ARSubsystems;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.EventSystems;
 using Inworld.Sample.Innequin;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 [RequireComponent(typeof(ARRaycastManager), typeof(ARPlaneManager))]
 public class CharacterPlacer : MonoBehaviour
@@ -17,6 +18,7 @@ public class CharacterPlacer : MonoBehaviour
     private ARRaycastManager raycastManager;
     private ARPlaneManager planeManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    private bool canPositionCharacter = true;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class CharacterPlacer : MonoBehaviour
         EnhancedTouch.EnhancedTouchSupport.Enable();
         EnhancedTouch.Touch.onFingerDown += TouchedScreen;
         EnhancedTouch.Touch.onFingerMove += TouchedScreen;
+        EnhancedTouch.Touch.onFingerUp += HidePlanes;
     }
 
     private void OnDisable()
@@ -38,6 +41,7 @@ public class CharacterPlacer : MonoBehaviour
         EnhancedTouch.EnhancedTouchSupport.Disable();
         EnhancedTouch.Touch.onFingerDown -= TouchedScreen;
         EnhancedTouch.Touch.onFingerMove -= TouchedScreen;
+        EnhancedTouch.Touch.onFingerUp -= HidePlanes;
     }
 
     private void TouchedScreen(EnhancedTouch.Finger finger)
@@ -45,12 +49,12 @@ public class CharacterPlacer : MonoBehaviour
         if (finger.index != 0)
             return;
 
-        // if (EventSystem.current.IsPointerOverGameObject(finger.currentTouch.touchId))
-        //     return;
-        
-
+        if (IsTouchOverUI(finger))
+            return;
+            
         if (raycastManager.Raycast(finger.currentTouch.screenPosition, hits, TrackableType.PlaneWithinPolygon))
         {
+            ShowPlanes();
             foreach (var hit in hits)
             {
                 var pose = hit.pose;
@@ -62,14 +66,7 @@ public class CharacterPlacer : MonoBehaviour
 
                 if (characterInstance == null)
                 {
-                    characterInstance = Instantiate(characterPrefab, pose.position, pose.rotation);
-                    InworldCharacter inworldCharacter = characterInstance.GetComponent<InworldCharacter>();
-
-                    inworldCharacter.Event.onBeginSpeaking.AddListener(MainController.Instance.OnBeginSpeaking);
-                    inworldCharacter.Event.onEndSpeaking.AddListener(MainController.Instance.OnEndSpeaking);
-                    inworldCharacter.Event.onGoalCompleted.AddListener(MainController.Instance.OnGoalComplete);
-
-                    StartCoroutine(GreetPlayer());
+                    InstantiateCharacter(pose);
                 } else {
                     characterInstance.transform.SetPositionAndRotation(pose.position, pose.rotation);
                 }
@@ -77,6 +74,52 @@ public class CharacterPlacer : MonoBehaviour
         }
     }
 
+    private bool IsTouchOverUI(EnhancedTouch.Finger finger)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
+        {
+            position = finger.currentTouch.screenPosition
+        };
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+        return raycastResults.Count > 0;
+    }
+
+    private void InstantiateCharacter(Pose pose)
+    {
+        characterInstance = Instantiate(characterPrefab, pose.position, pose.rotation);
+        InworldCharacter inworldCharacter = characterInstance.GetComponent<InworldCharacter>();
+
+        inworldCharacter.Event.onBeginSpeaking.AddListener(MainController.Instance.OnBeginSpeaking);
+        inworldCharacter.Event.onEndSpeaking.AddListener(MainController.Instance.OnEndSpeaking);
+        inworldCharacter.Event.onGoalCompleted.AddListener(MainController.Instance.OnGoalComplete);
+
+        // make the character canvas face the camera so that the user can always read the chat
+        GameObject canvas = characterInstance.transform.Find("Canvas").gameObject;
+        canvas.AddComponent<MaintainCanvasPosition>();
+
+        StartCoroutine(GreetPlayer());
+    }
+
+    private void HidePlanes(EnhancedTouch.Finger finger)
+    {
+        foreach (var plane in planeManager.trackables)
+        {
+            plane.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowPlanes()
+    {
+        foreach (var plane in planeManager.trackables)
+        {
+            plane.gameObject.SetActive(true);
+        }
+    }
+
+    // Greet the player after the character is placed
     private IEnumerator GreetPlayer()
     {
         Debug.Log("Finding Player...");

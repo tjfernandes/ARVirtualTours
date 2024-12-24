@@ -9,15 +9,14 @@ using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
-    private MainController mainController;
     private StateManager stateManager;
     private QuizController quizController;
 
     #region UI elements
-        public GameObject UICanvas;
         public GameObject bubbleRight;
         public AudioClip buttonClickAudio;
 
+        private GameObject canvas;
         private Button askButton;
         private GameObject bubbleChatPanel;
         private TMP_InputField chatInputField;
@@ -36,9 +35,6 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        // Get the main controller
-        mainController = GetComponent<MainController>();
-
         // Get the state manager
         stateManager = GetComponent<StateManager>();
 
@@ -46,13 +42,15 @@ public class UIManager : MonoBehaviour
         quizController = GetComponent<QuizController>();
 
         // UI elements
-        speakButton = UICanvas.transform.Find("SpeakButton").GetComponent<Button>();
-        quizPanel = UICanvas.transform.Find("QuizPanel").gameObject;
+        canvas = GameObject.Find("Canvas");
 
-        askButton = UICanvas.transform.Find("AskButton").GetComponent<Button>();
-        chatInputField = UICanvas.transform.Find("Chat").GetComponent<TMP_InputField>();
-        quizButton = UICanvas.transform.Find("QuizButton").GetComponent<Button>();
-        stopQuizButton = UICanvas.transform.Find("StopQuizButton").GetComponent<Button>();
+        speakButton = canvas.transform.Find("SpeakButton").GetComponent<Button>();
+        quizPanel = canvas.transform.Find("QuizPanel").gameObject;
+
+        askButton = canvas.transform.Find("AskButton").GetComponent<Button>();
+        chatInputField = canvas.transform.Find("Chat").GetComponent<TMP_InputField>();
+        quizButton = canvas.transform.Find("QuizButton").GetComponent<Button>();
+        stopQuizButton = canvas.transform.Find("StopQuizButton").GetComponent<Button>();
 
         finalScore = quizPanel.transform.Find("FinalScore").gameObject;
         confirmation = quizPanel.transform.Find("ConfirmationQuit").gameObject;
@@ -159,6 +157,8 @@ public class UIManager : MonoBehaviour
             // Toggle the audio capture
             Animator speakButtonAnimator = speakButton.GetComponent<Animator>();
             Image speakButtonImage = speakButton.GetComponent<Image>();
+            
+            MainController mainController = MainController.Instance;
             if (!mainController.audioCapture.activeSelf)
             {
                 mainController.OnPlayerStartSpeaking();            
