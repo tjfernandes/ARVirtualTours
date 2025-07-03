@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class UIManager : MonoBehaviour
         public AudioClip buttonClickAudio;
 
         private GameObject canvas;
+
+        private Button scanButton;
+        private TextMeshProUGUI roomName;
+
         private Button askButton;
         private GameObject bubbleChatPanel;
         private TMP_InputField chatInputField;
@@ -33,6 +38,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+
     void Awake()
     {
         // Get the state manager
@@ -43,6 +49,12 @@ public class UIManager : MonoBehaviour
 
         // UI elements
         canvas = GameObject.Find("Canvas");
+
+        scanButton = canvas.transform.Find("ScanButton").GetComponent<Button>();
+        scanButton.onClick.AddListener(() => SceneManager.LoadScene("ScanningScene"));
+
+        roomName = canvas.transform.Find("RoomName").GetComponent<TextMeshProUGUI>();
+        roomName.text = "Room: " + SceneManager.GetActiveScene().name; 
 
         speakButton = canvas.transform.Find("SpeakButton").GetComponent<Button>();
         quizPanel = canvas.transform.Find("QuizPanel").gameObject;
@@ -64,6 +76,7 @@ public class UIManager : MonoBehaviour
         chatInputField.onSubmit.AddListener(HandleTextSubmitted);
 
 
+
         // Quiz event management
         if (this.GetComponent<QuizController>().Questions.Count > 0)
         {
@@ -74,9 +87,8 @@ public class UIManager : MonoBehaviour
         {
             quizButton.gameObject.GetComponent<Button>().interactable = false;
         }
-        
 
-        speakButton.onClick.AddListener(OnSpeakButtonClicked);
+        speakButton.GetComponent<Button>().onClick.AddListener(OnSpeakButtonClicked);
 
         // Confirmation event management 
         yesButton.onClick.AddListener(OnYesButtonClicked);
@@ -179,7 +191,6 @@ public class UIManager : MonoBehaviour
 
         private void OnNoButtonClicked()
         {
-            GameObject confirmation = quizPanel.transform.Find("ConfirmationQuit").gameObject;
 
             foreach (Transform child in quizPanel.transform) {
                 child.gameObject.SetActive(true);
@@ -214,6 +225,13 @@ public class UIManager : MonoBehaviour
             if (speakButton != null) speakButton.interactable = true;
             if (quizButton != null && stateManager.currentState != stateManager.gameState && this.GetComponent<QuizController>().Questions.Count > 0) quizButton.interactable = true;
             if (stopQuizButton != null && stateManager.currentState == stateManager.gameState) stopQuizButton.interactable = true;
+
+            // Debug to check if the buttons are null
+            if (askButton == null) Debug.Log("Ask button is null");
+            if (speakButton == null) Debug.Log("Speak button is null");
+            if (quizButton == null) Debug.Log("Quiz button is null");
+            if (stopQuizButton == null) Debug.Log("Stop quiz button is null");
+
         }
 
     #endregion
@@ -241,23 +259,48 @@ public class UIManager : MonoBehaviour
         // Make the quiz panel visible
         quizPanel.SetActive(true);
 
-        foreach (Transform child in quizPanel.transform) {
-            child.gameObject.SetActive(true);
-        }
-
-        GameObject confirmation = quizPanel.transform.Find("ConfirmationQuit").gameObject;
-
         confirmation.SetActive(false);
         finalScore.SetActive(false);
     }
 
     public void ExitQuizMode()
     {
+        
+        Debug.Log("Exiting Quiz Mode");
         // Make the quiz panel invisible
+        GameObject questionsPanel = quizPanel.transform.Find("QuestionPanel").gameObject;
+        questionsPanel.SetActive(true);
+        GameObject options = quizPanel.transform.Find("Options").gameObject;
+        options.SetActive(true);
+
+        Debug.Log("Questions Panel Active: " + questionsPanel.activeSelf);
+        Debug.Log("Options Active: " + options.activeSelf);
+
+        finalScore.SetActive(true);
+        confirmation.SetActive(true);
+
+        Debug.Log("Final Score Active: " + finalScore.activeSelf);
+        Debug.Log("Confirmation Active: " + confirmation.activeSelf);
+
         quizPanel.SetActive(false);
+
+        Debug.Log("Quiz Panel Active: " + quizPanel.activeSelf);
+
+
+
         quizButton.gameObject.SetActive(true);
         quizButton.interactable = true;
         stopQuizButton.gameObject.SetActive(false);
+
+        // Debug all of these method objects activeself
+        // Debug.Log("Quiz Panel Active: " + quizPanel.activeSelf);
+        // Debug.Log("Questions Panel Active: " + questionsPanel.activeSelf);
+        // Debug.Log("Options Active: " + options.activeSelf);
+        // Debug.Log("Final Score Active: " + finalScore.activeSelf);
+        // Debug.Log("Confirmation Active: " + confirmation.activeSelf);
+        // Debug.Log("Quiz Button Active: " + quizButton.gameObject.activeSelf);
+        // Debug.Log("Stop Quiz Button Active: " + stopQuizButton.gameObject.activeSelf);
+
     }
 
     public void DisplayQuestionText(Question question)
@@ -265,11 +308,11 @@ public class UIManager : MonoBehaviour
         GameObject questionPanel = quizPanel.transform.Find("QuestionPanel").gameObject;
         TextMeshProUGUI questionText = questionPanel.transform.Find("QuestionText").GetComponent<TextMeshProUGUI>();
         questionText.text = "Question:\n\n" + question.QuestionText;
-
+        GameObject options = quizPanel.transform.Find("Options").gameObject;
         // Diplay options
         for (int i = 0; i < question.Options.Length; i++)
         {
-            Button optionButton = quizPanel.transform.Find("Option" + (i+1)).gameObject.GetComponent<Button>();
+            Button optionButton = options.transform.Find("Option" + (i+1)).gameObject.GetComponent<Button>();
             TextMeshProUGUI optionText = optionButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
             optionText.text = question.Options[i];
 
@@ -283,10 +326,11 @@ public class UIManager : MonoBehaviour
     {
         int selectedIndex = -1;
         Button selectedOptionButton = null;
+        GameObject options = quizPanel.transform.Find("Options").gameObject;
         // Iterate through all buttons and reset their colors
         for (int i = 0; i < quizController.Questions[quizController.CurrentQuestionIndex].Options.Length; i++)
         {
-            Button optionButton = quizPanel.transform.Find("Option" + (i+1)).gameObject.GetComponent<Button>();
+            Button optionButton = options.transform.Find("Option" + (i+1)).gameObject.GetComponent<Button>();
             if (optionButton == selectedButton)
             {
                 selectedIndex = i;
@@ -310,27 +354,25 @@ public class UIManager : MonoBehaviour
         // Hide the question panel and the options
         GameObject questionPanel = quizPanel.transform.Find("QuestionPanel").gameObject;
         questionPanel.SetActive(false);
-        for (int i = 0; i < 4; i++)
-        {
-            Button optionButton = quizPanel.transform.Find("Option" + (i+1)).gameObject.GetComponent<Button>();
-            optionButton.gameObject.SetActive(false);
-        }
+        GameObject options = quizPanel.transform.Find("Options").gameObject;
+        options.SetActive(false);
 
         // Display the final score
-        GameObject scorePanel = quizPanel.transform.Find("FinalScore").gameObject;
-        TextMeshProUGUI scoreText = scorePanel.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI scoreText = finalScore.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         scoreText.text = "Final Score: " + score + "/" + quizController.Questions.Count;
 
-        scorePanel.SetActive(true);
+        finalScore.SetActive(true);
 
     }
 
 
     public void ResetButtonsStyle()
     {
+        GameObject options = quizPanel.transform.Find("Options").gameObject;
         for (int i = 0; i < quizController.Questions[quizController.CurrentQuestionIndex].Options.Length; i++)
         {
-            Button optionButton = quizPanel.transform.Find("Option" + (i+1)).gameObject.GetComponent<Button>();
+            Debug.Log($"Quiz Panel Button {i+1}: {options.transform.Find("Option" + (i+1))}");
+            Button optionButton = options.transform.Find("Option" + (i+1)).GetComponent<Button>();
             optionButton.GetComponent<Image>().color = Color.white;
             optionButton.interactable = true;
         }

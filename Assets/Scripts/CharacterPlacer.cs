@@ -8,11 +8,13 @@ using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.EventSystems;
 using Inworld.Sample.Innequin;
 using UnityEngine.InputSystem.EnhancedTouch;
+using Inworld.Entities;
 
 [RequireComponent(typeof(ARRaycastManager), typeof(ARPlaneManager))]
 public class CharacterPlacer : MonoBehaviour
 {
     [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private GameObject instructionPanel;
 
     private GameObject characterInstance;
     private ARRaycastManager raycastManager;
@@ -24,6 +26,9 @@ public class CharacterPlacer : MonoBehaviour
     {
         raycastManager = GetComponent<ARRaycastManager>();
         planeManager = GetComponent<ARPlaneManager>();
+
+        // Show instructions when the app starts
+        ShowInstructions();
     }
 
     private void OnEnable()
@@ -51,10 +56,12 @@ public class CharacterPlacer : MonoBehaviour
 
         if (IsTouchOverUI(finger))
             return;
-            
+
         if (raycastManager.Raycast(finger.currentTouch.screenPosition, hits, TrackableType.PlaneWithinPolygon))
         {
             ShowPlanes();
+            HideInstructions();
+            
             foreach (var hit in hits)
             {
                 var pose = hit.pose;
@@ -67,7 +74,9 @@ public class CharacterPlacer : MonoBehaviour
                 if (characterInstance == null)
                 {
                     InstantiateCharacter(pose);
-                } else {
+                }
+                else
+                {
                     characterInstance.transform.SetPositionAndRotation(pose.position, pose.rotation);
                 }
             }
@@ -90,16 +99,20 @@ public class CharacterPlacer : MonoBehaviour
     private void InstantiateCharacter(Pose pose)
     {
         characterInstance = Instantiate(characterPrefab, pose.position, pose.rotation);
-        InworldCharacter inworldCharacter = characterInstance.GetComponent<InworldCharacter>();
 
-        inworldCharacter.Event.onBeginSpeaking.AddListener(MainController.Instance.OnBeginSpeaking);
-        inworldCharacter.Event.onEndSpeaking.AddListener(MainController.Instance.OnEndSpeaking);
-        inworldCharacter.Event.onGoalCompleted.AddListener(MainController.Instance.OnGoalComplete);
+        InworldCharacter character = characterInstance.GetComponent<InworldCharacter>();
+
+        character.Event.onBeginSpeaking.AddListener(MainController.Instance.OnBeginSpeaking);
+        character.Event.onEndSpeaking.AddListener(MainController.Instance.OnEndSpeaking);
+        character.Event.onGoalCompleted.AddListener(MainController.Instance.OnGoalComplete);
+
+        Debug.Log("Character Instance: " + characterInstance);
 
         // make the character canvas face the camera so that the user can always read the chat
         GameObject canvas = characterInstance.transform.Find("Canvas").gameObject;
         canvas.AddComponent<MaintainCanvasPosition>();
 
+        Debug.Log("Loading Scene: " + InworldController.Instance.CurrentScene);
         StartCoroutine(GreetPlayer());
     }
 
@@ -123,11 +136,27 @@ public class CharacterPlacer : MonoBehaviour
     private IEnumerator GreetPlayer()
     {
         Debug.Log("Finding Player...");
-        while(InworldController.CurrentCharacter == null)
+        while (InworldController.CurrentCharacter == null || InworldController.Client == null)
         {
             yield return null;
         }
         Debug.Log("Character Found");
         InworldController.CurrentCharacter.SendTrigger("greeting", false);
+    }
+    
+    private void ShowInstructions()
+    {
+        if (instructionPanel != null)
+        {
+            instructionPanel.SetActive(true);
+        }
+    }
+
+    private void HideInstructions()
+    {
+        if (instructionPanel != null)
+        {
+            instructionPanel.SetActive(false);
+        }
     }
 }

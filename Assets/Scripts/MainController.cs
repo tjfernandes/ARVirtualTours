@@ -11,7 +11,6 @@ using Inworld.Packet;
 using System;
 using UnityEngine.SceneManagement;
 using Inworld.Assets;
-using Inworld.Sample.RPM;
 
 /**
 * This controller is responsible to manage the user interactions
@@ -26,29 +25,23 @@ public class MainController : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
 
         stateManager = GetComponent<StateManager>();
         uiManager = GetComponent<UIManager>();
     }
-
+    
     #region Inworld Custom Event Listeners
         public void OnBeginSpeaking(string characterName)
         {
+            Debug.Log("OnBeginSpeaking: " + characterName);
             uiManager.DeactivateChatComponents();
             audioCapture.SetActive(false);
         }
 
         public void OnEndSpeaking(string characterName)
         {
+            Debug.Log("OnEndSpeaking: " + characterName);
             uiManager.ActivateChatComponents();
         }
 

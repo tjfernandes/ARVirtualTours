@@ -6,26 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartMenu.unity
-    guid: 2c9c5350c4c614b20893309e448a4367
+    path: Assets/Scenes/ScanningScene.unity
+    guid: 6f46dc10addee46a3b83f55250a425bf
   - enabled: 1
     path: Assets/Scenes/Atelier.unity
     guid: 9ea2a99e53c9b423faccd3696e0cb311
-  - enabled: 0
-    path: Assets/Scenes/Corredor.unity
-    guid: 11b1f401f56f348d0b923a00bae8646b
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/Escrit\xF3rio.unity"
-    guid: dd365e2005120465a8444e38f512aa6e
-  - enabled: 0
+    guid: 1e29d3931c866458cb529be0fbd5482a
+  - enabled: 1
     path: Assets/Scenes/Quarto.unity
-    guid: c306905bca60447c683e232d259cc073
-  - enabled: 0
+    guid: 00e0f1394bad84f6d9fe7190cde3dd26
+  - enabled: 1
     path: Assets/Scenes/Sala de jantar.unity
-    guid: ad832caa2355f431bb19cdfe64c072e1
-  - enabled: 0
+    guid: 61cd6e29556084007b29aea793477d9f
+  - enabled: 1
     path: Assets/Scenes/Sala do colecionador.unity
-    guid: 76b1b4172a3814fae9a85e58306e71d1
+    guid: 75f966dbba51d4f238d0dce9bd0b01d2
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7e02c8137289c4d769eceacb5e956cb4, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 88c5789a24a4c4a0784f92e2bc15dec5, type: 2}

@@ -141,13 +141,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 11400000, guid: 9ea6ba4a5708c4b10b2983fc1616dfe9, type: 2}
-  - {fileID: 7878382956458724354, guid: 56c46f365219741a49c2ea2c98f9d87c, type: 2}
-  - {fileID: 11400000, guid: 6b44ed1329be54ff2be418614fa3ef0d, type: 2}
-  - {fileID: 4800000, guid: e7c77f6eaab324a819efdc13b8125a39, type: 3}
-  - {fileID: 4800000, guid: 6743a50a812740be8c0aa3fccc46fae9, type: 3}
-  - {fileID: 5093220215511688085, guid: ee1a10601873b4476a7a18aeec7831cc, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -595,9 +589,9 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
-  cameraUsageDescription: VirtualTours wants to use your camera
-  locationUsageDescription: 
-  microphoneUsageDescription: VirtualTours wants to use your mic
+  cameraUsageDescription: AR Virtual Tour wants to use your camera
+  locationUsageDescription: AR Virtual Tour wants to use your location
+  microphoneUsageDescription: AR Virtual Tour wants to use your mic
   bluetoothUsageDescription: 
   macOSTargetOSVersion: 10.13.0
   switchNMETAOverride: 

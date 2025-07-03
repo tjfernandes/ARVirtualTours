@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396912a8212ac4e69b51fb4da7357d11, type: 3}
+  m_Name: BeaconDatabase
+  m_EditorClassIdentifier: 
+  beaconList:
+  - UUID: CEB0404D-3AF2-0B3D-8183-3A05F26F1A07
+    roomName: Atelier
+  - UUID: E39987D7-AC90-8CEF-D62C-326CF7BDADBC
+    roomName: "Escrit\xF3rio"

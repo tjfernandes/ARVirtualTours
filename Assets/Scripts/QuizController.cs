@@ -38,6 +38,8 @@ public class QuizController : MonoBehaviour
         CurrentQuestionIndex = 0; // Reset the question index
         score = 0; // Reset the score
 
+        Debug.Log("Questions: " + Questions.Count);
+
         ShuffleQuestions(Questions); // Optional: Shuffle the questions again
 
         DisplayCurrentQuestion(); // Display the first question
@@ -123,6 +125,7 @@ public class QuizController : MonoBehaviour
 
     private IEnumerator EndGame()
     {
+        Debug.Log("End of the quiz");
         // Character should inform the quiz is over
         InworldController.CurrentCharacter.SendTrigger("end_quiz", false);
         
